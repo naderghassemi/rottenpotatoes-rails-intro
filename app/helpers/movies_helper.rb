@@ -4,11 +4,14 @@ module MoviesHelper
     count.odd? ?  "odd" :  "even"
   end
 
-  def title_header_class(params)
-    if params[:sort] == 'title' then 'hilite' end
+  def header_class(header)
+    if @sort == header then 'hilite' end
   end
 
-  def release_date_header_class(params)
-    if params[:sort] == 'release_date' then 'hilite' end
+  def checked(rating)
+    if @checked_ratings.nil?
+        @checked_ratings = Movie.all_ratings
+    end
+    return @checked_ratings.include?(rating)
   end
 end
